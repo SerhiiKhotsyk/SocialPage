@@ -1,0 +1,18 @@
+.sidebar {
+    grid-area: s;
+    background-color: rgb(115, 150, 109);
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+.menu{
+    margin-bottom: 50px;
+}
+.menu__link {
+    display: inline-block;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+.menu__link[aria-current]{
+    color: gold;
+}

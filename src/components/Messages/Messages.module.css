@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+}
+
+.dialogs {
+    flex: 0 1 100px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+.messages {
+    flex: 1 1 auto;
+    padding: 0 10px;
+}

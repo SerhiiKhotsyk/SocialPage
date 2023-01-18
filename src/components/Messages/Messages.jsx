@@ -2,18 +2,17 @@ import React from 'react';
 import style from './Messages.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessagesItem/Message';
-import { sendMessageActionCreator, updateMessageTextActionCreator } from '../../redux/State';
 
 const Messages = (props) => {
-    let dialogsElements = props.state.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
-    let messagesElements = props.state.messagesData.map(message => <MessageItem text={message.text} /> );
+    let dialogsElements = props.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
+    let messagesElements = props.messagesData.map(message => <MessageItem text={message.text} /> );
 
     const onMessageChange = (event) => {
         let text = event.target.value;
-        props.dispatch(updateMessageTextActionCreator(text));
+        props.changeMessage(text);
     }
-    const sendMessage = () => {
-        props.dispatch(sendMessageActionCreator());
+    const onSendMessage = () => {
+        props.sendMessage();
     }
 
     return (
@@ -30,7 +29,7 @@ const Messages = (props) => {
                     placeholder='Начните вводить сообщение...' 
                     value={props.newMessageText}
                     onChange={ onMessageChange }></textarea>
-                <button onClick={ sendMessage }>Send Message</button>
+                <button onClick={ onSendMessage }>Send Message</button>
             </div>
         </div>
     );

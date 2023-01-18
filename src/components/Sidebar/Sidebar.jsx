@@ -1,10 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import style from './Sidebar.module.css';
-import Friends from './Friends/Friends';
+import FriendsContainer from './Friends/FriendsContainer';
 
-const Sidebar = (props) => {
-    
+const Sidebar = () => {
     return (
         <div className={style.sidebar}>
             <nav className={style.menu}>
@@ -14,6 +13,9 @@ const Sidebar = (props) => {
                     </li>
                     <li>
                         <NavLink to='/messages' className={style.menu__link}>Messages</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/users' className={style.menu__link}>Users</NavLink>
                     </li>
                     <li>
                         <NavLink to='/news' className={style.menu__link}>News</NavLink>
@@ -27,7 +29,7 @@ const Sidebar = (props) => {
                 </ul>
             </nav>
             <div className={style.friends}>
-                <Friends friendsData={props.state.friendsData} />
+                <FriendsContainer />
             </div>
         </div>
     )

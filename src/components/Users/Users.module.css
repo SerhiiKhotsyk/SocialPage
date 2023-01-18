@@ -1,0 +1,79 @@
+.pages {
+margin-bottom: 20px;
+text-align: center;
+}
+
+.pages span {
+    margin-right: 8px;
+    cursor: pointer;
+    display: inline-block;
+    background: rgb(162, 192, 152);
+    min-width: 25px;
+    min-height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 3px;
+    font-size: 18px; 
+}
+
+
+
+.selectedPage {
+    box-shadow: 0 0 4px 0 black;
+    font-weight: 700;
+}
+
+.users {
+    display: flex;
+    margin-bottom: 20px;
+}
+.userPreview {
+    flex: 0 1 80px;
+    margin-right: 10px;
+}
+
+.userPreview img {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 5px 0px rgb(0, 0, 0);
+}
+
+.userAvatar {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+.userBtn {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 0 5px 0px rgb(0, 0, 0);
+}
+.userInfo {
+    background: rgb(154, 183, 134);
+    flex: 1 1 auto;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 5px 0px rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+}
+.userInfo__left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.userName {
+    font-size: 18px;
+    font-weight: 700;
+}
+.userStatus {
+    
+}
+.userCountry, .userCity {
+    font-weight: 600;
+}

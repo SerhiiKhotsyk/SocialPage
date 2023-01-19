@@ -1,63 +1,31 @@
-import axios from "axios";
 import React from "react";
 import style from './Users.module.css';
 import userPhoto from '../../assets/images/userAvatar1.png';
 
-let Users = (props) => {
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                props.setUsers(response.data.items);
-            });
-        }
+const Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
 
-        // props.setUsers([
-        //     {
-        //         id: 1,
-        //         // avatarSrc: userAvatar1,
-        //         name: 'Serhii',
-        //         location: { city: 'Rivne', country: 'Ukraine' },
-        //         status: 'some user text',
-        //         followed: true,
-        //     },
-        //     {
-        //         id: 2,
-        //         // avatarSrc: userAvatar2,
-        //         name: 'Oleksandr',
-        //         location: { city: 'Kvasyliv', country: 'Ukraine' },
-        //         status: 'I am looking for a job right now',
-        //         followed: false,
-        //     },
-        //     {
-        //         id: 3,
-        //         // avatarSrc: userAvatar3,
-        //         name: 'George',
-        //         location: { city: 'New-York', country: 'USA' },
-        //         status: 'I like football',
-        //         followed: true,
-        //     },
-        //     {
-        //         id: 4,
-        //         // avatarSrc: userAvatar4,
-        //         name: 'Nicolas',
-        //         location: { city: 'Paris', country: 'France' },
-        //         status: "texte d'un utilisateur",
-        //         followed: true,
-        //     },
-    
-        // ])
+    for (let i = 1; i <= pagesCount; i += 1) {
+        pages.push(i);
     }
+
+    let curP = props.currentPage;
+    let curPFirst = ((curP - 5) < 0) ? 0 : curP - 5;
+    let curPLast = curP + 4;
+    let slicedPages = pages.slice(curPFirst, curPLast);
+    let firstPage = 1;
+    let lastPage = pages.slice(-1);
+
     return <div>
-        <button onClick={getUsers}>Get users</button>
         {
             props.users.map(user => <div className={style.users} key={user.id}>
                 <div className={style.userPreview}>
-                    <a link='#'><img className={style.userAvatar} src={user.photos.small ? user.photos.small : userPhoto } alt="userAvatar" /></a>
-                    { user.followed 
-                    ? <button className={style.userBtn} onClick={()=> {props.unfollow(user.id)}}>Unfollow</button> 
-                    : <button className={style.userBtn} onClick={()=> {props.follow(user.id)}}>Follow</button>}
-                    
+                    <a link='#'><img className={style.userAvatar} src={user.photos.small ? user.photos.small : userPhoto} alt="userAvatar" /></a>
+                    {user.followed
+                        ? <button className={style.userBtn} onClick={() => { props.unfollow(user.id) }}>Unfollow</button>
+                        : <button className={style.userBtn} onClick={() => { props.follow(user.id) }}>Follow</button>}
+
                 </div>
                 <div className={style.userInfo}>
                     <div className={style.userInfo__left}>
@@ -71,7 +39,19 @@ let Users = (props) => {
                 </div>
             </div>)
         }
+
+        <div className={style.pages}>
+            {(firstPage <= curPFirst) && <span onClick={(e) => { props.onPageChanged(firstPage) }}>{firstPage}</span> }
+            {(firstPage <= curPFirst) && <span onClick={(e) => { props.onPageChanged(firstPage) }}>...</span> }
+            {slicedPages.map(p => {
+                return <span className={props.currentPage === p ? style.selectedPage : null}
+                    onClick={(e) => { props.onPageChanged(p) }}>{p}</span>
+            })}
+            {(lastPage >= curPLast + 1) && <span onClick={(e) => { props.onPageChanged(lastPage) }}>...</span> }
+            {(lastPage >= curPLast + 1) && <span onClick={(e) => { props.onPageChanged(lastPage) }}>{lastPage}</span> }
+        </div>
     </div>
 }
+
 
 export default Users;

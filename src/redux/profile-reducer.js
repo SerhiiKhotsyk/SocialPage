@@ -1,5 +1,8 @@
+import { userAPI } from "../api/api";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
     postsData: [
@@ -9,6 +12,7 @@ let initialState = {
         {id: 4, message: 'Hello world!', likes: '20', dislikes: '0'},
     ],
     newPostText: '',
+    profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -26,17 +30,12 @@ const profileReducer = (state = initialState, action) => {
                 }
                 return lastId;
             }
-
             let newPost = {
                 id: setId(),
                 message: state.newPostText,
                 likes: '0',
                 dislikes: '0',
             }
-            // let stateCopy = {...state};
-            // stateCopy.postsData = [...state.postsData];
-            // stateCopy.postsData.push(newPost);
-            // stateCopy.newPostText = '';
             return {
                 ...state,
                 postsData: [...state.postsData, newPost],
@@ -48,7 +47,12 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.text,
             };
-
+        
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile,
+            }
         default: return state;
     }
 };
@@ -56,8 +60,17 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => {
     return {type: ADD_POST};
 }
-export const updatePostTextActionCreator = (t) => {
-    return {type: UPDATE_POST_TEXT, text: t};
+export const updatePostTextActionCreator = (text) => {
+    return {type: UPDATE_POST_TEXT, text};
+}
+export const getUserProfile = (profile) => {
+    return {type: SET_USER_PROFILE, profile}
+}
+
+export const getUserProfileThunk = (userId) => (dispatch) => {
+    userAPI.getProfile(userId).then( response => {
+        dispatch(getUserProfile(response.data))
+    })
 }
 
 export default profileReducer;

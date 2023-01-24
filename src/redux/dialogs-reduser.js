@@ -22,9 +22,6 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_MESSAGE_TEXT:
-            // state.newMessageText = action.text;
-            // return state;
-            debugger;
             return {
                 ...state,
                 newMessageText: action.text,
@@ -54,5 +51,6 @@ export const sendMessageActionCreator = () => {
 export const updateMessageTextActionCreator = (t) => {
     return {type: UPDATE_MESSAGE_TEXT, text: t};
 }
+
 
 export default dialogsReducer;

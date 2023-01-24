@@ -1,6 +1,7 @@
 import React from "react";
 import style from './Users.module.css';
 import userPhoto from '../../assets/images/userAvatar1.png';
+import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -21,11 +22,16 @@ const Users = (props) => {
         {
             props.users.map(user => <div className={style.users} key={user.id}>
                 <div className={style.userPreview}>
-                    <a link='#'><img className={style.userAvatar} src={user.photos.small ? user.photos.small : userPhoto} alt="userAvatar" /></a>
+                    <NavLink to={`/profile/${user.id}`}>
+                        <img className={style.userAvatar} src={user.photos.small 
+                            ? user.photos.small 
+                            : userPhoto} alt="userAvatar" />
+                    </NavLink>
                     {user.followed
-                        ? <button className={style.userBtn} onClick={() => { props.unfollow(user.id) }}>Unfollow</button>
-                        : <button className={style.userBtn} onClick={() => { props.follow(user.id) }}>Follow</button>}
-
+                        ? <button disabled={props.isFollowingProgress.some(id => id === user.id)} 
+                        className={style.userBtn} onClick={() => {props.unfollowThunk(user.id)}}>Unfollow</button>
+                        : <button disabled={props.isFollowingProgress.some(id => id === user.id)} 
+                        className={style.userBtn} onClick={() => {props.followThunk(user.id)}}>Follow</button>}
                 </div>
                 <div className={style.userInfo}>
                     <div className={style.userInfo__left}>
@@ -41,14 +47,14 @@ const Users = (props) => {
         }
 
         <div className={style.pages}>
-            {(firstPage <= curPFirst) && <span onClick={(e) => { props.onPageChanged(firstPage) }}>{firstPage}</span> }
-            {(firstPage <= curPFirst) && <span onClick={(e) => { props.onPageChanged(firstPage) }}>...</span> }
+            {(firstPage <= curPFirst) && <span onClick={(e) => { props.onPageChanged(firstPage) }}>{firstPage}</span>}
+            {(firstPage <= curPFirst) && <span onClick={(e) => { props.onPageChanged(firstPage) }}>...</span>}
             {slicedPages.map(p => {
                 return <span className={props.currentPage === p ? style.selectedPage : null}
-                    onClick={(e) => { props.onPageChanged(p) }}>{p}</span>
+                    onClick={(e) => { props.onPageChanged(p) }} key={p.id}>{p}</span>
             })}
-            {(lastPage >= curPLast + 1) && <span onClick={(e) => { props.onPageChanged(lastPage) }}>...</span> }
-            {(lastPage >= curPLast + 1) && <span onClick={(e) => { props.onPageChanged(lastPage) }}>{lastPage}</span> }
+            {(lastPage >= curPLast + 1) && <span onClick={(e) => { props.onPageChanged(lastPage) }}>...</span>}
+            {(lastPage >= curPLast + 1) && <span onClick={(e) => { props.onPageChanged(lastPage) }}>{lastPage}</span>}
         </div>
     </div>
 }

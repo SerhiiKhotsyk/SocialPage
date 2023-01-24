@@ -3,6 +3,8 @@
     background-color: rgb(115, 150, 109);
     padding: 10px;
     border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
 }
 .logo {
     width: 40px;

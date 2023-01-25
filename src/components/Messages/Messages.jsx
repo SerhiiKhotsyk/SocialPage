@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Messages.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessageItem from './MessagesItem/Message';
+import { Navigate } from 'react-router-dom';
 
 const Messages = (props) => {
     let dialogsElements = props.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);

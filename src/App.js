@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 import MessagesContainer from './components/Messages/MessagesContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -19,6 +20,7 @@ const App = () => {
           <Route element={<ProfileContainer />} path='/profile/:userId?' />
           <Route element={<MessagesContainer />} path='/messages/*' />
           <Route element={<UsersContainer />} path='/users/' />
+          <Route element={<Login />} path='/login' />
         </Routes>
       </div>
     </div>

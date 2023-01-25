@@ -5,7 +5,7 @@ import friendsReducer from "./friends-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from './users-reducer';
-import ThunkMiddleware from "redux-thunk";
+import ThunkMiddleware  from "redux-thunk";
 
 
 const redusers = combineReducers({

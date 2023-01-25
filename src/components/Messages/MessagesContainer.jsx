@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { sendMessageActionCreator, updateMessageTextActionCreator } from '../../redux/dialogs-reduser';
 import StoreContext from '../../StoreContex';
 import Messages from './Messages';
@@ -45,6 +47,12 @@ let mapDispatchToProps = (dispatch) => {
 
     }
 }
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
 
-export default MessagesContainer;
+// let AuthRedirectComponent = WithAuthRedirect(Messages);
+// const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+// export default MessagesContainer;
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    WithAuthRedirect,
+)(Messages);

@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component {
 
         let userId = this.props.router.params.userId;
         if (!userId) {
-            userId = 2;
+            userId = 27577;
         }
         this.props.getUserProfileThunk(userId);
         // userAPI.getProfile(userId).then( response => {

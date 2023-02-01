@@ -1,0 +1,41 @@
+.formPage {
+    display: flex;
+    justify-content: center;
+    
+}
+.formPageInner {
+    background-color: rgb(145, 171, 144);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.form > div {
+    margin-bottom: 10px;
+}
+.form :last-child {
+    margin-bottom: 0;
+}
+.formTitle {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.loginBox p,
+.passwordBox p  {
+    margin-bottom: 5px;
+}
+.loginBox input,
+.passwordBox input {
+    padding: 5px;
+    border-radius: 3px;
+}
+.formButtonBox button {
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.formSummaryError {
+    color: white;
+    background: rgb(166, 77, 77);
+    padding: 5px;
+    border-radius: 5px;
+}

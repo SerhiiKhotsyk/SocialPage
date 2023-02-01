@@ -6,11 +6,10 @@ import PostsContainer from './Posts/PostsContainer';
 import { Navigate } from 'react-router-dom';
 
 const Profile = (props) => {
-    
     return (
         <div className={style.main}>
             <Wallpaper />
-            <ProfileInfo  profile={props.profile}/>
+            <ProfileInfo  profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <PostsContainer store={props.store} />
         </div>
     )

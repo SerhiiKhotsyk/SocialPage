@@ -4,7 +4,7 @@ class Status extends React.Component {
 
     state = {
         editMode: false,
-        status: '',
+        status: this.props.status,
     }
 
     activateEditMode = () => {
@@ -12,11 +12,23 @@ class Status extends React.Component {
             editMode: true,
         })
     }
-
     deactivateEditMode = () => {
         this.setState({
             editMode: false,
-        })
+        });
+        this.props.updateStatus(this.state.status); 
+    }
+    onStatusChange = (event) => {    
+        this.setState({
+            status: event.currentTarget.value,
+        }) 
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -24,10 +36,10 @@ class Status extends React.Component {
             <>
                 {!this.state.editMode
                     ? <div>
-                        <span onDoubleClick={ this.activateEditMode } >{this.props.status}</span>
+                        <span onDoubleClick={ this.activateEditMode } >{this.props.status || 'No status yet'}</span>
                     </div>
                     : <div>
-                        <input autoFocus={true} onBlur={ this.deactivateEditMode } value={this.props.status} />
+                        <input onChange={this.onStatusChange} autoFocus={true} onBlur={ this.deactivateEditMode } value={this.state.status} />
                     </div>}
             </>
         )

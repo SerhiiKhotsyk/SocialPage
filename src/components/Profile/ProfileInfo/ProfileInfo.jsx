@@ -3,6 +3,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import style from './ProfileInfo.module.css';
 import profilePhoto from '../../../assets/images/userAvatar4.webp';
 import Status from "./Status/Status";
+import StatusWithHook from "./Status/StatusWithHook";
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -16,7 +17,7 @@ const ProfileInfo = (props) => {
                 {/* <div className={style.description}>
                     {props.profile.aboutMe}
                 </div> */}
-                <Status status='Hello my friends' />
+                <StatusWithHook status={props.status} updateStatus={props.updateStatus} />
             </div>  
         )
 };

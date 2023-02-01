@@ -29,16 +29,16 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => {
     return {
         postsData: state.posts.postsData,
-        newPostText: state.posts.newPostText,
+        // newPostText: state.posts.newPostText,
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateNewPostChange: (text) => {
-            dispatch(updatePostTextActionCreator(text));
-        },
-        addPost: () => {
-            dispatch(addPostActionCreator());
+        // updateNewPostChange: (text) => {
+        //     dispatch(updatePostTextActionCreator(text));
+        // },
+        addPost: (newPostText) => {
+            dispatch(addPostActionCreator(newPostText));
         }
     }
 }

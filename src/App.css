@@ -16,3 +16,8 @@
     overflow: hidden;
     padding: 10px;
 }
+button {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+}

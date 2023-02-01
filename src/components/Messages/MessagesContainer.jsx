@@ -29,28 +29,25 @@ import Messages from './Messages';
 //     </StoreContext.Consumer>
 // )
 // }
+
 let mapStateToProps = (state) => {
     return {
         dialogsData: state.dialogs.dialogsData,
         messagesData: state.dialogs.messagesData,
-        newMessageText: state.dialogs.newMessageText,
+        // newMessageText: state.dialogs.newMessageText,
     }
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        changeMessage: (text) => {
-            dispatch(updateMessageTextActionCreator(text));
-        },
-        sendMessage: () => {
-            dispatch(sendMessageActionCreator());
+        // changeMessage: (text) => {
+        //     dispatch(updateMessageTextActionCreator(text));
+        // },
+        sendMessage: (message) => {
+            dispatch(sendMessageActionCreator(message));
         }
 
     }
 }
-
-// let AuthRedirectComponent = WithAuthRedirect(Messages);
-// const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-// export default MessagesContainer;
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
